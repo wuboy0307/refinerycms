@@ -266,6 +266,18 @@ module Refinery
               ::I18n.t('switch_to_website', :scope => 'refinery.site_bar')
             )
           end
+
+          it 'will show pages with inherited templates', :js do
+            visit refinery.admin_pages_path
+
+            find('a[tooltip^=Edit]').click
+            fill_in 'Title', :with => 'Searchable'
+            click_link 'Advanced options'
+            select 'Searchable', :from => 'View template'
+            click_button 'Preview'
+
+            new_window_should_have_content('Form application/search_form')
+          end
         end
 
         context 'a brand new page' do
@@ -761,7 +773,7 @@ module Refinery
 
         let(:about_page) do
           page = Refinery::Page.last
-          # we need page parts so that there's wymeditor
+          # we need page parts so that there's a visual editor
           Refinery::Pages.default_parts.each_with_index do |default_page_part, index|
             page.parts.create(:title => default_page_part, :body => nil, :position => index)
           end
@@ -773,14 +785,14 @@ module Refinery
             before { Refinery::Pages.absolute_page_links = false }
 
             it "shows Russian pages if we're editing the Russian locale" do
-              visit refinery.link_to_admin_pages_dialogs_path(:wymeditor => true, :switch_locale => :ru)
+              visit refinery.link_to_admin_pages_dialogs_path(:visual_editor => true, :switch_locale => :ru)
 
               page.should have_content("About Ru")
               page.should have_selector("a[href='/ru/about-ru']")
             end
 
             it "shows default to the default locale if no query string is added" do
-              visit refinery.link_to_admin_pages_dialogs_path(:wymeditor => true)
+              visit refinery.link_to_admin_pages_dialogs_path(:visual_editor => true)
 
               page.should have_content("About")
               page.should have_selector("a[href='/about']")
@@ -791,14 +803,14 @@ module Refinery
             before { Refinery::Pages.absolute_page_links = true }
 
             it "shows Russian pages if we're editing the Russian locale" do
-              visit refinery.link_to_admin_pages_dialogs_path(:wymeditor => true, :switch_locale => :ru)
+              visit refinery.link_to_admin_pages_dialogs_path(:visual_editor => true, :switch_locale => :ru)
 
               page.should have_content("About Ru")
               page.should have_selector("a[href='http://www.example.com/ru/about-ru']")
             end
 
             it "shows default to the default locale if no query string is added" do
-              visit refinery.link_to_admin_pages_dialogs_path(:wymeditor => true)
+              visit refinery.link_to_admin_pages_dialogs_path(:visual_editor => true)
 
               page.should have_content("About")
               page.should have_selector("a[href='http://www.example.com/about']")
@@ -806,10 +818,10 @@ module Refinery
           end
 
           # see https://github.com/refinery/refinerycms/pull/1583
+          # this test needs to be moved to refinerycms-wymeditor somehow
           context "when switching locales" do
             specify "dialog has correct links", :js do
               visit refinery.edit_admin_page_path(about_page)
-
 
               find("#page_part_body .wym_tools_link a").click
 

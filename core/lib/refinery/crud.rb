@@ -243,10 +243,10 @@ module Refinery
           else
             module_eval %(
               def index
-                unless searching?
-                  find_all_#{plural_name}
-                else
+                if searching?
                   search_all_#{plural_name}
+                else
+                  find_all_#{plural_name}
                 end
 
                 render_partial_response?
@@ -285,7 +285,7 @@ module Refinery
               previous = nil
               params[:ul].each do |_, list|
                 list.each do |index, hash|
-                  moved_item_id = hash['id'][/\\d+$/]
+                  moved_item_id = hash['id'][/\\d+\\z/]
                   @current_#{singular_name} = #{class_name}.find_by_id(moved_item_id)
 
                   if @current_#{singular_name}.respond_to?(:move_to_root)
