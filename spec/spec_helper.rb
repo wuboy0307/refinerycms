@@ -7,12 +7,19 @@ ENGINE_RAILS_ROOT = File.join(File.dirname(__FILE__), '../') unless defined?(ENG
 # Configure Rails Environment
 ENV["RAILS_ENV"] ||= 'test'
 
+if ENV['TRAVIS']
+  require 'coveralls'
+  Coveralls.wear!
+end
+
 require File.expand_path("../dummy/config/environment", __FILE__)
 
 require 'rspec/rails'
 require 'capybara/rspec'
 
 Rails.backtrace_cleaner.remove_silencers!
+
+I18n.locale = :en
 
 RSpec.configure do |config|
   config.mock_with :rspec

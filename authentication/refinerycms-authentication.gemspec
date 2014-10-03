@@ -2,7 +2,7 @@
 require File.expand_path('../../core/lib/refinery/version', __FILE__)
 
 version = Refinery::Version.to_s
-rails_version = ['>= 3.1.11', '< 4.1']
+rails_version = ['>= 4.0.2', '< 4.2']
 
 Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'refinerycms-core',  version
   s.add_dependency 'actionmailer',      rails_version
-  s.add_dependency 'devise',            '~> 3.0.2'
+  s.add_dependency 'devise',            ['~> 3.0', '>= 3.2.4']
   s.add_dependency 'friendly_id',       '>= 5.0.0.rc1'
 end
