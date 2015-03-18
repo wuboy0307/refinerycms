@@ -34,8 +34,8 @@ zh-TW:
         delete: 移除
         close: 關閉
       image_picker:
-        none_selected: 目前沒有任何 %{what} 被選擇, 請點選這裡來新增.
-        remove_current: 移除目前的 %{what}
+        none_selected: 目前沒有任何圖片被選擇, 請點選這裡來新增.
+        remove_current: 移除目前的圖片
         change: 點選這裡來選擇一張圖片
         show: 展示
       resource_picker:

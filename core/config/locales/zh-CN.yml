@@ -34,15 +34,15 @@ zh-CN:
         delete: 删除
         close: 关闭
       image_picker:
-        none_selected: 当前没有图片 %{what} 被选中, 请点这里去选取一个.
-        remove_current: 删除当前 %{what}
+        none_selected: 当前没有图片被选中, 请点这里去选取一个.
+        remove_current: 删除当前图片
         change: 点这里去选取一个图片
         show: 显示
       resource_picker:
         download_current: 下载当前文件
         opens_in_new_window: 在新窗口打开
         remove_current: "删除当前文件"
-        no_resource_selected: 当前没有文件 %{what} 被选中, 请点这里去选取一个.
+        no_resource_selected: 当前没有文件被选中, 请点这里去选取一个.
         name: 添加文件
         current: 当前文件
       search:

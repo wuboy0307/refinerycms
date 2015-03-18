@@ -5,12 +5,10 @@
 <% if localized? %>
     <%% if Refinery::I18n.frontend_locales.many? %>
       <span class='preview'>
-        <%% <%= singular_name %>.translations.each do |translation| %>
-          <%% if translation.<%= title_attribute %>.present? %>
-            <%%= link_to refinery_icon_tag("flags/#{translation.locale}.png", :size => '16x11'),
-                         refinery.edit_<%= namespacing.underscore %>_admin_<%= singular_name %>_path(<%= singular_name %>, :switch_locale => translation.locale),
+        <%% Refinery::I18n.frontend_locales.each do |locale| %>
+            <%%= link_to refinery_icon_tag("flags/#{locale}.png", :size => '16x11'),
+                         refinery.edit_<%= namespacing.underscore %>_admin_<%= singular_name %>_path(<%= singular_name %>, :switch_locale => locale),
                          :class => 'locale' %>
-          <%% end %>
         <%% end %>
       </span>
     <%% end %>
