@@ -32,6 +32,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails',                  '>= 4.0', '< 5.1'
   s.add_dependency 'coffee-rails',                ['~> 4.0', '>= 4.0.0']
   s.add_dependency 'jquery-rails',                '>= 2.3.0'
-  s.add_dependency 'jquery-ui-rails',             '~> 5.0.0'
+  s.add_dependency 'jquery-ui-rails',             '~> 6.0.1'
   s.add_dependency 'decorators',                  '~> 2.0.0'
 end
